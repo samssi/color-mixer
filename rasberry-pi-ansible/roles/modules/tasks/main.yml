@@ -1,13 +1,14 @@
 - name: Install hardware and software required packages
   apt: name={{item}} state=installed
   with_items:
-    - build-essential
-    - libi2c-dev
-    - i2c-tools
-    - python3-dev
-    - libffi-dev
-    - python3-rpi.gpio
-    - python3-smbus
+    # TODO: which modules are actually needed
+    #- build-essential
+    #- libi2c-dev
+    #- i2c-tools
+    #- python3-dev
+    #- libffi-dev
+    #- python3-rpi.gpio
+    #- python3-smbus
 
 - name: Modify boot configuration
   template: src=config.txt.j2 dest=/boot/config.txt owner=root group=root mode=0755

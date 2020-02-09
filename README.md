@@ -22,4 +22,26 @@ Instructions on this can be also found from: https://www.raspberrypi.org/documen
 Make a note of the IP address for the device if you can't retrieve it from router later
 
 8. Shutdown the Rasberry PI and hook it to local network using the ethernet connection. Remove monitor and keyboard. Connect to it using ssh with
-the IP adress you made note of or find it from the router
+the IP adress you made note of or find it from the router.
+
+```sudo shutdown -P now```
+
+## Enabling GPIO with I2C 
+
+I2C is a serial protocol for embedded systems developed by Philips and used by most of IC manufacturers. It connects
+low-speed devices like microcontrollers and other similar peripherals in embedded systems.
+
+Ansible module in this project will install and load two Kernel modules to enable Rasberry PI I2C adapters
+
+* i2c_bcm2708, The low level driver for I2C
+* i2c_dev, provides the higher level /dev-access for all of the i2c adapters: https://www.kernel.org/doc/Documentation/i2c/dev-interface
+    * Each registered adapter gets assigned with number starting from 0
+    * List adapters using i2cdetect -l  
+
+Ansible module also contains required Rasberry Pi configuration to enable (see config.txt.j2) 
+    * i2c1
+        * TBD
+    * spi
+        * TBD
+    * audio
+        * TBD
