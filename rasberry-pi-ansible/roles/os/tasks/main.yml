@@ -4,7 +4,7 @@
     state: latest
 
 - name: Install custom software
-  apt: name={{item}} state=installed
-  with_items:
-    - telnet
-    - git
+  apt:
+    name:
+      - git
+    state: latest

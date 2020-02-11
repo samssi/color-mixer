@@ -1,6 +1,10 @@
 - name: Install hardware and software required packages
-  apt: name={{item}} state=installed
-  with_items:
+  apt:
+    name:
+      - i2c-tools
+      - python3-pip
+      - python3-venv
+    state: latest
     # TODO: which modules are actually needed
     #- build-essential
     #- libi2c-dev

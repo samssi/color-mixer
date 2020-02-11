@@ -1,4 +1,4 @@
 - hosts: pi
   roles:
-    - os
+    #- os
     - modules

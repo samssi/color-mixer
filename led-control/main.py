@@ -17,10 +17,6 @@ GPIO.setup(R_PIN, GPIO.OUT)
 GPIO.setup(G_PIN, GPIO.OUT)
 GPIO.setup(B_PIN, GPIO.OUT)
 
-GPIO.output(R_PIN, GPIO.HIGH)
-GPIO.output(G_PIN, GPIO.HIGH)
-GPIO.output(B_PIN, GPIO.HIGH)
-
 redPwm = GPIO.PWM(R_PIN, 2000)
 greenPwm = GPIO.PWM(G_PIN, 2000)
 bluePwm = GPIO.PWM(B_PIN, 2000)
@@ -44,20 +40,16 @@ def blueCycle(value):
     bluePwm.ChangeDutyCycle(value)
 
 def ledOff():
-    GPIO.output(11, GPIO.HIGH)
-    GPIO.output(12, GPIO.HIGH)
-    GPIO.output(13, GPIO.HIGH)
-
-def loop():
-    while True:
-        time.sleep(1)
+    redPwm.ChangeDutyCycle(100)
+    greenPwm.ChangeDutyCycle(100)
+    bluePwm.ChangeDutyCycle(100)
 
 def destroy():
     redPwm.stop()
     bluePwm.stop()
     greenPwm.stop()
-    ledOff()
     GPIO.cleanup()
+    sys.exit()
 
 def ledOn(r, g, b):
     start()
@@ -73,8 +65,8 @@ def setup():
     signal.signal(signal.SIGTERM, exit)
 
 setup()
-ledOn(222, 20, 255)
-
+ledOn(50, 0, 0)
+ledOff()
 
 @app.route('/color', methods=['POST'])
 def changeColor():
