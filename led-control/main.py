@@ -7,17 +7,23 @@ import sys
 
 app = Flask(__name__)
 
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(11, GPIO.OUT)
-GPIO.setup(12, GPIO.OUT)
-GPIO.setup(13, GPIO.OUT)
-GPIO.output(11, GPIO.HIGH)
-GPIO.output(12, GPIO.HIGH)
-GPIO.output(13, GPIO.HIGH)
+R_PIN = 36
+G_PIN = 38
+B_PIN = 40
 
-redPwm = GPIO.PWM(11, 2000)
-greenPwm = GPIO.PWM(12, 2000)
-bluePwm = GPIO.PWM(13, 2000)
+GPIO.setmode(GPIO.BOARD)
+
+GPIO.setup(R_PIN, GPIO.OUT)
+GPIO.setup(G_PIN, GPIO.OUT)
+GPIO.setup(B_PIN, GPIO.OUT)
+
+GPIO.output(R_PIN, GPIO.HIGH)
+GPIO.output(G_PIN, GPIO.HIGH)
+GPIO.output(B_PIN, GPIO.HIGH)
+
+redPwm = GPIO.PWM(R_PIN, 2000)
+greenPwm = GPIO.PWM(G_PIN, 2000)
+bluePwm = GPIO.PWM(B_PIN, 2000)
 
 def start():
     redPwm.start(0)
