@@ -12,10 +12,8 @@ export default class Mixer extends React.Component {
 
   callLed(color) {
     axios.post("http://192.168.1.129:5000/color", color.rgb)
-        .then((response) => {
-          console.log('done')
-        })
-        .catch((error) => { console.log(error) });
+        .then((response) => console.log('done'))
+        .catch((error) => console.log(error));
 
     console.log(`Calling Led with ${JSON.stringify(color.rgb)}`)
   }
