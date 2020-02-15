@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from "axios";
 import { SketchPicker } from 'react-color';
 
 export default class Mixer extends React.Component {
@@ -10,6 +11,12 @@ export default class Mixer extends React.Component {
   }
 
   callLed(color) {
+    axios.post("http://192.168.1.129:5000/color", color.rgb)
+        .then((response) => {
+          console.log('done')
+        })
+        .catch((error) => { console.log(error) });
+
     console.log(`Calling Led with ${JSON.stringify(color.rgb)}`)
   }
 
