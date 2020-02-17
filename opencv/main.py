@@ -12,7 +12,7 @@ def start():
         frame_nbr = frame_nbr + 1
 
         _, frame = video.read()
-        overlay_frame = frame.copy()
+        overlay_frame = cv2.flip(frame, 1)
 
         height, width = frame.shape[:2]
         sample_x = int(width / 2)
