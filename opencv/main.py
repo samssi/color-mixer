@@ -25,11 +25,30 @@ def start():
             frame_nbr = 0
             b, g, r = frame[sample_y, sample_x]
 
+            if r < 50 and g < 50 and b < 50:
+                r_out = 0
+                g_out = 0
+                b_out = 0
+            elif b < r > g:
+                r_out = 200
+                g_out = 0
+                b_out = 0
+            elif r < g > b:
+                r_out = 0
+                g_out = 200
+                b_out = 0
+            elif r < b > g:
+                r_out = 0
+                g_out = 0
+                b_out = 200
+
             try:
                 requests.post(led_url,
-                              json={"r": numpy.int(r),
-                                    "g": numpy.int(g),
-                                    "b": numpy.int(b)}, timeout=0.1)
+                              json={"r": r_out,
+                                    "g": g_out,
+                                    "b": b_out}, timeout=0.1)
+                print(f'Posted rgb [{r} {g} {b}]')
+
             except (ValueError, Exception):
                 print(f'Failed to post rgb [{r} {g} {b}]')
 
