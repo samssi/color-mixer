@@ -4,3 +4,4 @@ dist/
 *.iml
 .idea
 /opencv/.venv/
+.DS_Store
