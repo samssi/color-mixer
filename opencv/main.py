@@ -1,5 +1,4 @@
 import cv2
-import numpy
 import requests
 
 led_url = 'http://192.168.1.129:5000/color'
