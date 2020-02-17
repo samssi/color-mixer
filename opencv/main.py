@@ -5,6 +5,23 @@ import requests
 led_url = 'http://192.168.1.129:5000/color'
 
 
+def create_rgb_json(r=0, g=0, b=0):
+    return {"r": r, "g": g, "b": b}
+
+
+def rgb_json(r, g, b):
+    if r < 50 and g < 50 and b < 50:
+        return create_rgb_json()
+    elif b < r > g:
+        return create_rgb_json(r=200)
+    elif r < g > b:
+        return create_rgb_json(g=200)
+    elif r < b > g:
+        return create_rgb_json(b=200)
+    else:
+        return create_rgb_json(200, 200, 200)
+
+
 def start():
     video = cv2.VideoCapture(0)
     frame_nbr = 0
@@ -24,29 +41,10 @@ def start():
         if frame_nbr == 20:
             frame_nbr = 0
             b, g, r = frame[sample_y, sample_x]
-
-            if r < 50 and g < 50 and b < 50:
-                r_out = 0
-                g_out = 0
-                b_out = 0
-            elif b < r > g:
-                r_out = 200
-                g_out = 0
-                b_out = 0
-            elif r < g > b:
-                r_out = 0
-                g_out = 200
-                b_out = 0
-            elif r < b > g:
-                r_out = 0
-                g_out = 0
-                b_out = 200
+            json = rgb_json(r, g, b)
 
             try:
-                requests.post(led_url,
-                              json={"r": r_out,
-                                    "g": g_out,
-                                    "b": b_out}, timeout=0.1)
+                requests.post(led_url, json=json, timeout=0.1)
                 print(f'Posted rgb [{r} {g} {b}]')
 
             except (ValueError, Exception):
