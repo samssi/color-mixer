@@ -1,7 +1,7 @@
 import cv2
 import requests
 
-led_url = 'http://192.168.1.129:5000/color'
+led_url = 'http://192.168.10.43:5000/color'
 
 
 def create_rgb_json(r=0, g=0, b=0):
