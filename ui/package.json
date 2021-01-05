@@ -7,7 +7,7 @@
     "start": "npx webpack-dev-server"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "ramda": "^0.26.1",
     "react": "^16.10.1",
     "react-color": "^2.18.0",
